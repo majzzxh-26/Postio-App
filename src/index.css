@@ -1,13 +1,414 @@
-body {
+/* Google Fonts - Open Sans for a clean, readable font */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+/* Base Styles */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 16px; /* Base font size for better readability on larger screens */
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  background-color: #f0f2f5; /* A softer background color often used in social media apps */
+  color: #333; /* Default text color */
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centers the App container vertically and horizontally */
+}
+
+/* App Container */
+.App {
+  width: 100%;
+  max-width: 800px;
+  min-height: 100vh; /* Use min-height to allow content to push the footer down */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #ddd; /* Lighter border for a softer look */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* More pronounced, softer shadow */
+  background-color: #fff; /* App background as white for content clarity */
+  border-radius: 8px; /* Slightly rounded corners for a modern feel */
+  overflow: hidden; /* Ensures child elements don't spill outside rounded corners */
+}
+
+/* Header & Footer */
+.Header, .Footer {
+  width: 100%;
+  background-color: #4267B2; /* A classic social media blue for header */
+  color: #fff; /* White text for contrast */
+  padding: 1rem 1.5rem; /* More horizontal padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.Header h1 {
+  font-size: 1.8rem; /* Slightly larger for prominence */
+  font-weight: 600; /* Bolder text */
+}
+
+.Header svg {
+  font-size: 2.2rem; /* Consistent icon size */
+  color: #a8d9f1; /* Lighter blue for icons */
+}
+
+.Footer {
+  padding: 0.75rem 1.5rem;
+  display: flex; /* Changed to flex for more control */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  font-size: 0.9rem; /* Slightly smaller text for copyright */
+  color: #e0e0e0; /* Lighter text for footer */
+  margin-top: auto; /* Pushes the footer to the bottom if content is short */
+  border-top: 1px solid #eee; /* Subtle separator from main content */
+}
+
+/* Navigation */
+.Nav {
+  width: 100%;
+  background-color: #fff; /* White background for nav */
+  border-bottom: 1px solid #eee; /* Separator from header/main content */
+  display: flex;
+  flex-direction: column; /* Default for mobile: stack items */
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5rem 0; /* Add vertical padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
+}
+
+.searchForm {
+  width: 90%; /* Wider search bar on mobile */
+  padding: 0.5rem 1.5rem; /* Padding for mobile search */
+  display: flex; /* Use flex for input and label */
+  align-items: center;
+}
+
+.searchForm input[type="text"] {
+  flex-grow: 1; /* Input takes up available space */
+  font-family: 'Open Sans', sans-serif;
+  height: 48px; /* <-- INCREASED HEIGHT */
+  font-size: 1.1rem; /* <-- SLIGHTLY LARGER FONT */
+  padding: 0.75rem 1rem; /* Adjusted padding to match new height */
+  border: 1px solid #ccc; /* Softer border */
+  border-radius: 20px; /* Fully rounded search input */
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on focus */
+}
+
+.searchForm input[type="text"]:focus {
+  border-color: #4267B2; /* Highlight border on focus */
+  box-shadow: 0 0 0 3px rgba(66, 103, 178, 0.2); /* Soft blue glow on focus */
+}
+
+.searchForm label {
+  position: absolute;
+  left: -9999px; /* Still hide the label visually for screen readers */
+}
+
+.Nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%; /* Occupy full width */
+  justify-content: space-around; /* Distribute nav items evenly */
+  padding: 0; /* Remove default ul padding */
+}
+
+.Nav li {
+  padding: 0.75rem 1rem; /* Adjust padding for links */
+  flex-grow: 1; /* Allow list items to grow */
+  text-align: center; /* Center text within li */
+}
+
+.Nav li a {
+  color: #4267B2; /* Blue text for navigation links */
+  text-decoration: none;
+  font-weight: 600; /* Bolder links */
+  transition: color 0.3s ease; /* Smooth color transition */
+  display: block; /* Make the entire padding area clickable */
+}
+
+.Nav li:hover a,
+.Nav li:focus a {
+  color: #333; /* Darker text on hover/focus */
+}
+
+.Nav li:hover,
+.Nav li:focus {
+  background-color: #f0f2f5; /* Light background on hover/focus */
+  cursor: pointer;
+}
+
+/* Main Content Area */
+.Home, .NewPost, .PostPage, .About, .Missing {
+  width: 100%;
+  flex-grow: 1;
+  padding: 1.5rem; /* Increased padding for content areas */
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+/* Post Styling */
+.post {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners for individual posts */
+  padding: 1.5rem;
+  margin-bottom: 1rem; /* Consistent spacing between posts */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Soft shadow for a card-like effect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition on hover */
+}
+
+.post:hover {
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+}
+
+.Home .post a {
+  text-decoration: none;
+  color: inherit; /* Inherit text color from parent for link */
+}
+
+.Home .post a:visited {
+  color: inherit;
+}
+
+.post:first-child {
+  margin-top: 0;
+}
+
+.post:last-child {
+  border-bottom: none; /* No bottom border on the last post if it's not a list */
+}
+
+.postTitle {
+  font-size: 1.5rem; /* Larger title for readability */
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.postDate {
+  font-size: 0.85rem; /* Slightly larger date text */
+  color: #777; /* Softer color for date */
+  margin-bottom: 1rem; /* More space between date and body */
+}
+
+.postBody {
+  margin: 1rem 0;
+  line-height: 1.6; /* Better line spacing for readability */
+  color: #444; /* Slightly darker body text */
+}
+
+/* New Post / Edit Post Form */
+.newPostForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px; /* Constrain form width for better appearance */
+  margin: 0 auto; /* Center the form */
+}
+
+.newPostForm label {
+  margin-top: 1rem;
+  font-weight: 600; /* Bolder labels */
+  color: #555;
+}
+
+.newPostForm input[type='text'],
+.newPostForm textarea {
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.75rem 1rem; /* Increased padding */
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Rounded corners for inputs */
+  margin-top: 0.5rem; /* Space between label and input */
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newPostForm input[type='text']:focus,
+.newPostForm textarea:focus {
+  border-color: #4267B2;
+  box-shadow: 0 0 0 3px rgba(66, 103, 178, 0.2);
+}
+
+.newPostForm textarea {
+  height: 150px; /* Increased height for textarea */
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.newPostForm button {
+  margin-top: 1.5rem; /* More space above the button */
+  height: 50px; /* Taller button */
+  min-width: 120px; /* Wider button */
+  border-radius: 8px; /* Consistent rounded corners */
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem; /* Slightly larger text */
+  font-weight: 600;
+  background-color: #4267B2; /* Primary action color */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.newPostForm button:hover {
+  background-color: #365899; /* Darker blue on hover */
+  transform: translateY(-1px); /* Slight lift */
+}
+
+/* Empty State / Missing Page / Info Pages */
+.Missing p, .PostPage p, .NewPost p {
+  margin-top: 1rem;
+}
+
+.statusMsg {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Post Page Specific Buttons */
+.PostPage button {
+  height: 48px;
+  min-width: 48px;
+  border-radius: 6px; /* Slightly rounded for buttons */
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.deleteButton {
+  background-color: #e74c3c; /* A standard red for delete */
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+.editButton {
+  background-color: #3498db; /* A standard blue for edit */
+}
+
+.editButton:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+/* About Page */
+.About h2 {
+  margin-bottom: 1rem;
+  color: #222;
+}
+.About ul {
+    margin-top: 1rem;
+    padding-left: 20px; /* Ensure bullet points are visible */
+}
+.About li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    color: #444;
+}
+.About p {
+    line-height: 1.6;
+    color: #444;
+}
+.About p:first-of-type {
+    margin-top: 1rem; /* Ensure consistent spacing */
+}
+
+/* Responsive Design - Media Queries */
+
+/* Tablet and larger screens */
+@media only screen and (min-width: 610px) {
+  html {
+    font-size: 18px; /* Slightly larger base font for tablets */
+  }
+
+  .Header h1 {
+    font-size: 2rem;
+  }
+
+  .Nav {
+    flex-direction: row; /* Horizontal navigation bar */
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem; /* Add horizontal padding */
+  }
+
+  .Nav ul {
+    width: auto; /* Allow ul to take its natural width */
+    justify-content: flex-end; /* Align nav items to the right */
+    flex-grow: 1; /* Allow ul to take remaining space */
+  }
+
+  .Nav li {
+    padding: 1rem; /* Restore original padding for larger screens */
+    flex-grow: 0; /* Prevent list items from growing unnecessarily */
+  }
+
+  .searchForm {
+    width: 40%; /* Adjust search bar width */
+    padding: 0.5rem 0; /* Adjust padding */
+  }
+
+  .searchForm input[type="text"] {
+    margin-left: 0; /* Remove extra left margin */
+  }
+
+  .newPostForm textarea {
+    height: 200px; /* Taller textarea on larger screens */
+  }
+}
+
+/* Desktop and larger screens */
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 20px; /* Larger base font for desktops */
+  }
+
+  .Header svg {
+    font-size: 2.8rem; /* Larger icons on desktop */
+  }
+
+  .Nav {
+      padding: 0 2rem; /* More padding for wider screens */
+  }
+
+  .Nav li {
+      padding: 1.2rem 1.5rem; /* More generous padding for nav links */
+  }
+
+  .searchForm {
+      width: 30%; /* Even narrower search bar for larger screens */
+  }
+  .searchForm input[type="text"] {
+    height: 48px; /* Consistent height */
+    font-size: 1.1rem; /* Consistent font size */
+}
 }
