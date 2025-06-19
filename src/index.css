@@ -93,32 +93,33 @@ body {
 }
 
 .searchForm {
-  width: 90%; /* Wider search bar on mobile */
+  width: 90%;
+   /* Wider search bar on mobile */
   padding: 0.5rem 1.5rem; /* Padding for mobile search */
   display: flex; /* Use flex for input and label */
   align-items: center;
 }
 
 .searchForm input[type="text"] {
-  flex-grow: 1; /* Input takes up available space */
+  flex-grow: 1; 
   font-family: 'Open Sans', sans-serif;
-  height: 48px; /* <-- INCREASED HEIGHT */
-  font-size: 1.1rem; /* <-- SLIGHTLY LARGER FONT */
-  padding: 0.75rem 1rem; /* Adjusted padding to match new height */
-  border: 1px solid #ccc; /* Softer border */
-  border-radius: 20px; /* Fully rounded search input */
+  height: 48px; 
+  font-size: 1.1rem; 
+  padding: 0.75rem 1rem; 
+  border: 1px solid #ccc; 
+  border-radius: 20px; 
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on focus */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .searchForm input[type="text"]:focus {
-  border-color: #4267B2; /* Highlight border on focus */
-  box-shadow: 0 0 0 3px rgba(66, 103, 178, 0.2); /* Soft blue glow on focus */
+  border-color: #4267B2; 
+  box-shadow: 0 0 0 3px rgba(66, 103, 178, 0.2); 
 }
 
 .searchForm label {
   position: absolute;
-  left: -9999px; /* Still hide the label visually for screen readers */
+  left: -9999px; 
 }
 
 .Nav ul {

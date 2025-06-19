@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <DataProvider>
               <Header
-                title={"Abdul Social Media"}
+                title={"Postio App"}
                 
               />
               <Nav/>
