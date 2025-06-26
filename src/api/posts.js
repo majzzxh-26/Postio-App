@@ -1,4 +1,4 @@
 import axios from 'axios';
 export default axios.create({
-    baseURL:"https://postio-app-backend.onrender.com"
+    baseURL:"https://postio-backend-server.onrender.com/api"
 })

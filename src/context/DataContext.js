@@ -19,7 +19,7 @@ export const DataProvider = ({ children }) => {
   const navigate = useNavigate();
   const { width } = useWindowSize();
 
-  const { data, fetchError, isLoading } = useAxiosFetch('https://postio-app-backend.onrender.com/posts');
+  const { data, fetchError, isLoading } = useAxiosFetch('https://postio-backend-server.onrender.com/api/posts');
 
   // load posts when data is fetched
   useEffect(() => {
