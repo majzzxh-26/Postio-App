@@ -21,7 +21,7 @@ export const DataProvider = ({ children }) => {
 
   const { data, fetchError, isLoading } = useAxiosFetch('https://postio-backend-server.onrender.com/api/posts');
 
-  // load posts when data is fetched
+  
   useEffect(() => {
     setPosts(data);
   }, [data]);
